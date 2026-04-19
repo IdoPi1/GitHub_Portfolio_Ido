@@ -78,9 +78,17 @@
             overflow: hidden;
             margin-bottom: 2rem;
             border: 1px solid #333;
+            /* הפריסה החדשה - תמונה לימין וטקסט לשמאל */
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
         }
 
-        .project-content { padding: 1.5rem; }
+        .project-content { 
+            padding: 1.5rem; 
+            flex: 1; /* תופס את שאר השטח עבור הטקסט */
+        }
+        
         .project-content h3 { margin: 0; color: var(--primary-accent); font-size: 1.4rem; }
         
         .tag {
@@ -95,11 +103,12 @@
         }
 
         .project-img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-            border-bottom: 1px solid #333;
+            width: 35%; /* רוחב מוקטן לתמונה */
+            min-width: 250px;
+            aspect-ratio: 3 / 2; /* שמירה על יחס לרוחב */
+            object-fit: cover; /* מונע עיוות של התמונה */
+            border-bottom: none;
+            border-left: 1px solid #333; /* קו הפרדה עדין בין התמונה לטקסט */
         }
 
         .about-flex {
@@ -135,6 +144,19 @@
         }
 
         footer { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #333; }
+
+        /* התאמה למסכים קטנים (מובייל) - מחזיר את הכרטיסיות לתצוגה אופקית */
+        @media (max-width: 768px) {
+            .project-card {
+                flex-direction: column;
+            }
+            .project-img {
+                width: 100%;
+                min-width: unset;
+                border-left: none;
+                border-bottom: 1px solid #333;
+            }
+        }
     </style>
 </head>
 <body>
