@@ -78,7 +78,6 @@
             overflow: hidden;
             margin-bottom: 2rem;
             border: 1px solid #333;
-            /* הפריסה החדשה - תמונה לימין וטקסט לשמאל */
             display: flex;
             flex-direction: row-reverse;
             align-items: center;
@@ -86,7 +85,7 @@
 
         .project-content { 
             padding: 1.5rem; 
-            flex: 1; /* תופס את שאר השטח עבור הטקסט */
+            flex: 1; 
         }
         
         .project-content h3 { margin: 0; color: var(--primary-accent); font-size: 1.4rem; }
@@ -103,12 +102,12 @@
         }
 
         .project-img {
-            width: 35%; /* רוחב מוקטן לתמונה */
+            width: 35%;
             min-width: 250px;
-            aspect-ratio: 3 / 2; /* שמירה על יחס לרוחב */
-            object-fit: cover; /* מונע עיוות של התמונה */
-            border-bottom: none;
-            border-left: 1px solid #333; /* קו הפרדה עדין בין התמונה לטקסט */
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            border-radius: 8px; /* מעגל את הפינות של התמונה עצמה */
+            margin: 1.5rem 1.5rem 1.5rem 0; /* מרווח מהצד הימני ומלמעלה/למטה */
         }
 
         .about-flex {
@@ -145,16 +144,15 @@
 
         footer { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #333; }
 
-        /* התאמה למסכים קטנים (מובייל) - מחזיר את הכרטיסיות לתצוגה אופקית */
+        /* התאמה למסכים קטנים (מובייל) */
         @media (max-width: 768px) {
             .project-card {
                 flex-direction: column;
             }
             .project-img {
-                width: 100%;
+                width: calc(100% - 3rem); /* מקטין את התמונה קצת בהתאם למרווחים */
                 min-width: unset;
-                border-left: none;
-                border-bottom: 1px solid #333;
+                margin: 1.5rem auto 0 auto; /* שם מרווח יפה כשהתמונה למעלה */
             }
         }
     </style>
@@ -164,7 +162,7 @@
 <header>
     <img src="my_self.jpg" alt="Ido David" class="profile-img-small">
     <h1>Ido David</h1>
-    <p>Mechatronics2 & Mechanical Engineer</p>
+    <p>Mechatronics & Mechanical Engineer</p>
     <div class="links">
         <a href="https://www.linkedin.com/in/ido-david-258691299?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank">LinkedIn Profile</a>
     </div>
