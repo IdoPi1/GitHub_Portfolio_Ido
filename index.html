@@ -71,11 +71,10 @@
             margin-bottom: 2rem;
             border: 1px solid #333;
             display: flex;
-            flex-direction: column; /* שונה לעמודה כדי לאפשר לחלק המורחב לרדת למטה */
+            flex-direction: column;
             overflow: hidden;
         }
 
-        /* החלק העליון של הכרטיסייה (התצוגה הרגילה) */
         .project-main {
             display: flex;
             flex-direction: row-reverse;
@@ -109,7 +108,6 @@
             margin: 1.5rem;
         }
 
-        /* עיצוב כפתור ההרחבה */
         .expand-btn {
             background: none;
             border: none;
@@ -136,12 +134,10 @@
             font-size: 0.9rem;
         }
 
-        /* סיבוב החץ כשהכרטיסייה פתוחה */
         .project-card.expanded .expand-icon {
             transform: rotate(180deg);
         }
 
-        /* הגדרות האנימציה לפתיחה חלקה (CSS Grid hack) */
         .project-details-wrapper {
             display: grid;
             grid-template-rows: 0fr;
@@ -156,7 +152,6 @@
             overflow: hidden;
         }
 
-        /* התוכן המורחב עצמו */
         .project-details {
             padding: 0 1.5rem;
             opacity: 0;
@@ -170,18 +165,23 @@
             margin-top: 1rem;
         }
 
-        .youtube-placeholder {
-            width: 100%;
-            max-width: 560px;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
+        /* Container for responsive iframe */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
             border-radius: 8px;
-            margin: 1rem 0;
+            margin-top: 1.5rem;
             border: 1px solid #444;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .about-flex {
@@ -257,8 +257,8 @@
                 <img src="DOG.png" alt="Robot Dog Project" class="project-img">
                 <div class="project-content">
                     <h3>Quadrupedal Robot (Robot Dog) - Active Stabilization</h3>
-                    <span class="tag">Embedded C++</span> <span class="tag">IMU MPU6050</span> <span class="tag">ESP32</span>
-                    <p>Developed a four-legged robot featuring an active self-leveling system. The project involved complex motion logic and real-time stabilization using accelerometer and gyroscope data. I optimized the hardware by remapping motor control to GPIO 22 to ensure stable WiFi initialization and reliable performance.</p>
+                    <span class="tag">C++</span> <span class="tag">Python</span> <span class="tag">Robotics</span> <span class="tag">Sensors</span> <span class="tag">SolidWorks</span>
+                    <p>Developed a hybrid quadruped-wheeled robot featuring an active self-stabilization system utilizing a Control Moment Gyroscope (CMG).</p>
                     
                     <button class="expand-btn" onclick="toggleProject(this)">
                         <span class="btn-text">Read More</span>
@@ -270,10 +270,13 @@
                 <div class="project-details-inner">
                     <div class="project-details">
                         <br>
-                        <h4>In-Depth Technical Details</h4>
-                        <p>Here you can add a longer explanation about the challenges you faced, the algorithms used (like inverse kinematics for the legs), or specific structural analyses performed.</p>
-                        <div class="youtube-placeholder">
-                            ▶️ YouTube Video / Extra Images Area
+                        <h4>Research & Implementation Overview</h4>
+                        <p>For my final research project, I developed a hybrid quadruped wheeled robot. The goal of the study was to examine the effect of integrating a Control Moment Gyroscope (CMG) as an additional active stabilization element for improving the robot’s stability.</p>
+                        <p>The robotic system includes a Proportional controller for correcting the robot’s lateral tilt. In addition, the CMG system generates active control moments to provide further stabilization.</p>
+                        <p>As part of the research, experiments were conducted with and without the CMG system, while applying controlled dynamic disturbances, in order to evaluate its contribution to improving the robot’s dynamic stability.</p>
+                        
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/P0Reh9JByU4?si=QC-rNN_kYvCaXGna" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -390,13 +393,9 @@
 
 <script>
     function toggleProject(button) {
-        // מציאת הכרטיסייה הספציפית שלחצנו עליה
         const card = button.closest('.project-card');
-        
-        // החלפת המצב בין פתוח לסגור (הוספה/הסרה של המחלקה)
         card.classList.toggle('expanded');
         
-        // עדכון הטקסט של הכפתור
         const btnText = button.querySelector('.btn-text');
         if (card.classList.contains('expanded')) {
             btnText.textContent = 'Show Less';
