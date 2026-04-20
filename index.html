@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ido David | Engineering Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #121212;
@@ -26,7 +26,7 @@
 
         header {
             background: #1a1a1a;
-            padding: 2.5rem 1rem;
+            padding: 3rem 1rem;
             text-align: center;
             border-bottom: 2px solid var(--primary-accent);
         }
@@ -41,20 +41,14 @@
         }
 
         header h1 { margin: 0; font-size: 2.2rem; color: #fff; }
-        header p { font-size: 1.1rem; color: var(--primary-accent); margin: 0.5rem 0; }
-
-        .links { margin-top: 1rem; }
-        .links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            border: 1px solid var(--primary-accent);
-            padding: 5px 15px;
-            border-radius: 20px;
-            transition: all 0.3s;
+        
+        /* שינוי פונט תיאור עליון */
+        header p { 
+            font-size: 1.5rem; 
+            font-weight: 600;
+            color: var(--primary-accent); 
+            margin: 0.5rem 0; 
         }
-        .links a:hover { background: var(--primary-accent); color: #fff; }
 
         .container {
             max-width: 900px;
@@ -106,8 +100,8 @@
             min-width: 250px;
             aspect-ratio: 3 / 2;
             object-fit: cover;
-            border-radius: 8px; /* מעגל את הפינות של התמונה עצמה */
-            margin: 1.5rem 1.5rem 1.5rem 0; /* מרווח מהצד הימני ומלמעלה/למטה */
+            border-radius: 8px;
+            margin: 1.5rem;
         }
 
         .about-flex {
@@ -134,25 +128,33 @@
         }
         
         .contact-link {
-            color: var(--primary-accent);
+            color: var(--text-main);
             text-decoration: none;
             font-weight: bold;
-            display: block;
-            margin: 10px 0;
+            display: inline-block;
+            margin: 20px 0;
             font-size: 1.1rem;
+            border: 1px solid var(--primary-accent);
+            padding: 10px 25px;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background: var(--primary-accent);
+            color: #fff;
         }
 
         footer { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #333; }
 
-        /* התאמה למסכים קטנים (מובייל) */
         @media (max-width: 768px) {
             .project-card {
                 flex-direction: column;
             }
             .project-img {
-                width: calc(100% - 3rem); /* מקטין את התמונה קצת בהתאם למרווחים */
+                width: calc(100% - 3rem);
                 min-width: unset;
-                margin: 1.5rem auto 0 auto; /* שם מרווח יפה כשהתמונה למעלה */
+                margin: 1.5rem auto;
             }
         }
     </style>
@@ -163,9 +165,6 @@
     <img src="my_self.jpg" alt="Ido David" class="profile-img-small">
     <h1>Ido David</h1>
     <p>Mechatronics & Mechanical Engineer</p>
-    <div class="links">
-        <a href="https://www.linkedin.com/in/ido-david-258691299?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank">LinkedIn Profile</a>
-    </div>
 </header>
 
 <div class="container">
@@ -193,20 +192,20 @@
         </div>
 
         <div class="project-card">
-            <img src="PID.png" alt="Self Balancing Robot" class="project-img">
-            <div class="project-content">
-                <h3>2-Wheel Self-Balancing Robot</h3>
-                <span class="tag">PID Control</span> <span class="tag">Control Theory</span> <span class="tag">Sensor Fusion</span>
-                <p>Engineered a two-wheeled self-balancing robot utilizing a custom-tuned PID controller. Implemented real-time sensor fusion to continuously calculate the tilt angle and apply corrective motor outputs, maintaining upright stability under dynamic physical disturbances.</p>
-            </div>
-        </div>
-
-        <div class="project-card">
             <img src="ARM.png" alt="Robotic Arm" class="project-img">
             <div class="project-content">
                 <h3>3-DOF Robotic Arm & Inverse Kinematics</h3>
                 <span class="tag">Inverse Kinematics</span> <span class="tag">Robotics</span> <span class="tag">3-DOF</span>
                 <p>Designed and programmed a 3-Degree-of-Freedom (DOF) robotic arm. Successfully developed and implemented inverse kinematics algorithms to accurately calculate the required joint angles for precise 3D spatial positioning of the end-effector.</p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="PID.png" alt="Self Balancing Robot" class="project-img">
+            <div class="project-content">
+                <h3>2-Wheel Self-Balancing Robot</h3>
+                <span class="tag">PID Control</span> <span class="tag">Control Theory</span> <span class="tag">Sensor Fusion</span>
+                <p>Engineered a two-wheeled self-balancing robot utilizing a custom-tuned PID controller. Implemented real-time sensor fusion to continuously calculate the tilt angle and apply corrective motor outputs, maintaining upright stability under dynamic physical disturbances.</p>
             </div>
         </div>
 
@@ -232,7 +231,8 @@
             <p>Feel free to reach out for professional opportunities or collaborations:</p>
             <p style="font-size: 1.2rem; margin: 15px 0;"><strong>Email:</strong> idodavid2244@gmail.com</p>
             <p style="font-size: 1.2rem;"><strong>Phone:</strong> 052-4280941</p>
-            <a href="https://wa.me/972524280941" target="_blank" class="contact-link">💬 Chat on WhatsApp</a>
+            
+            <a href="https://www.linkedin.com/in/ido-david-258691299?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="contact-link">Connect on LinkedIn</a>
         </div>
     </section>
 
