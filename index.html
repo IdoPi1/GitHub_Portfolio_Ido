@@ -165,23 +165,54 @@
             margin-top: 1rem;
         }
 
-        /* Container for responsive iframe */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 8px;
+        /* עיצוב הגלריה הפנימית (וידאו ותמונה) */
+        .media-gallery {
+            display: flex;
+            gap: 1.5rem;
             margin-top: 1.5rem;
-            border: 1px solid #444;
+            flex-wrap: wrap; /* מאפשר שבירת שורה במסכים קטנים */
         }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        .gallery-item {
+            flex: 1;
+            min-width: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #444;
+            background: #000;
+        }
+
+        .gallery-item img, .gallery-item video {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* עיצוב כפתור יוטיוב בולט */
+        .youtube-btn-large {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #ff0000;
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .youtube-btn-large:hover {
+            background-color: #cc0000;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
         }
 
         .about-flex {
@@ -275,8 +306,19 @@
                         <p>The robotic system includes a Proportional controller for correcting the robot’s lateral tilt. In addition, the CMG system generates active control moments to provide further stabilization.</p>
                         <p>As part of the research, experiments were conducted with and without the CMG system, while applying controlled dynamic disturbances, in order to evaluate its contribution to improving the robot’s dynamic stability.</p>
                         
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/P0Reh9JByU4?si=QC-rNN_kYvCaXGna" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="media-gallery">
+                            <div class="gallery-item">
+                                <video src="V.mov" autoplay loop muted playsinline></video>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="real_rob.jpg" alt="Real Robot System">
+                            </div>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <a href="https://youtu.be/P0Reh9JByU4?si=QC-rNN_kYvCaXGna" target="_blank" class="youtube-btn-large">
+                                ▶️ Watch Full Video on YouTube
+                            </a>
                         </div>
                     </div>
                 </div>
