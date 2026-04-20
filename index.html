@@ -42,7 +42,6 @@
 
         header h1 { margin: 0; font-size: 2.2rem; color: #fff; }
         
-        /* שינוי פונט תיאור עליון */
         header p { 
             font-size: 1.5rem; 
             font-weight: 600;
@@ -69,9 +68,15 @@
         .project-card {
             background: var(--bg-card);
             border-radius: 12px;
-            overflow: hidden;
             margin-bottom: 2rem;
             border: 1px solid #333;
+            display: flex;
+            flex-direction: column; /* שונה לעמודה כדי לאפשר לחלק המורחב לרדת למטה */
+            overflow: hidden;
+        }
+
+        /* החלק העליון של הכרטיסייה (התצוגה הרגילה) */
+        .project-main {
             display: flex;
             flex-direction: row-reverse;
             align-items: center;
@@ -102,6 +107,81 @@
             object-fit: cover;
             border-radius: 8px;
             margin: 1.5rem;
+        }
+
+        /* עיצוב כפתור ההרחבה */
+        .expand-btn {
+            background: none;
+            border: none;
+            color: var(--primary-accent);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .expand-btn:hover {
+            color: #fff;
+        }
+
+        .expand-icon {
+            display: inline-block;
+            transition: transform 0.4s ease;
+            font-size: 0.9rem;
+        }
+
+        /* סיבוב החץ כשהכרטיסייה פתוחה */
+        .project-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* הגדרות האנימציה לפתיחה חלקה (CSS Grid hack) */
+        .project-details-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s ease-out;
+        }
+
+        .project-card.expanded .project-details-wrapper {
+            grid-template-rows: 1fr;
+        }
+
+        .project-details-inner {
+            overflow: hidden;
+        }
+
+        /* התוכן המורחב עצמו */
+        .project-details {
+            padding: 0 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease, padding 0.3s ease;
+        }
+
+        .project-card.expanded .project-details {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            opacity: 1;
+            border-top: 1px solid #333;
+            margin-top: 1rem;
+        }
+
+        .youtube-placeholder {
+            width: 100%;
+            max-width: 560px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #444;
         }
 
         .about-flex {
@@ -148,13 +228,13 @@
         footer { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #333; }
 
         @media (max-width: 768px) {
-            .project-card {
+            .project-main {
                 flex-direction: column;
             }
             .project-img {
                 width: calc(100% - 3rem);
                 min-width: unset;
-                margin: 1.5rem auto;
+                margin: 1.5rem auto 0 auto;
             }
         }
     </style>
@@ -173,39 +253,105 @@
         <h2>Projects</h2>
 
         <div class="project-card">
-            <img src="DOG.png" alt="Robot Dog Project" class="project-img">
-            <div class="project-content">
-                <h3>Quadrupedal Robot (Robot Dog) - Active Stabilization</h3>
-                <span class="tag">Embedded C++</span> <span class="tag">IMU MPU6050</span> <span class="tag">ESP32</span>
-                <p>Developed a four-legged robot featuring an active self-leveling system. The project involved complex motion logic and real-time stabilization using accelerometer and gyroscope data. I optimized the hardware by remapping motor control to GPIO 22 to ensure stable WiFi initialization and reliable performance.</p>
-                <a href="#" style="color: #e62117; text-decoration: none; font-weight: bold;">▶️ Watch Demo on YouTube</a>
+            <div class="project-main">
+                <img src="DOG.png" alt="Robot Dog Project" class="project-img">
+                <div class="project-content">
+                    <h3>Quadrupedal Robot (Robot Dog) - Active Stabilization</h3>
+                    <span class="tag">Embedded C++</span> <span class="tag">IMU MPU6050</span> <span class="tag">ESP32</span>
+                    <p>Developed a four-legged robot featuring an active self-leveling system. The project involved complex motion logic and real-time stabilization using accelerometer and gyroscope data. I optimized the hardware by remapping motor control to GPIO 22 to ensure stable WiFi initialization and reliable performance.</p>
+                    
+                    <button class="expand-btn" onclick="toggleProject(this)">
+                        <span class="btn-text">Read More</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                </div>
+            </div>
+            <div class="project-details-wrapper">
+                <div class="project-details-inner">
+                    <div class="project-details">
+                        <br>
+                        <h4>In-Depth Technical Details</h4>
+                        <p>Here you can add a longer explanation about the challenges you faced, the algorithms used (like inverse kinematics for the legs), or specific structural analyses performed.</p>
+                        <div class="youtube-placeholder">
+                            ▶️ YouTube Video / Extra Images Area
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="project-card">
-            <img src="image_PCB.jpg" alt="PCB Design Project" class="project-img">
-            <div class="project-content">
-                <h3>Custom Rotational Speed Sensor</h3>
-                <span class="tag">PCB Design</span> <span class="tag">SolidWorks</span> <span class="tag">3D Printing</span>
-                <p>Designed and manufactured a custom PCB for an IR-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure designed for industrial environments.</p>
+            <div class="project-main">
+                <img src="image_PCB.jpg" alt="PCB Design Project" class="project-img">
+                <div class="project-content">
+                    <h3>Custom Rotational Speed Sensor</h3>
+                    <span class="tag">PCB Design</span> <span class="tag">SolidWorks</span> <span class="tag">3D Printing</span>
+                    <p>Designed and manufactured a custom PCB for an IR-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure designed for industrial environments.</p>
+                    
+                    <button class="expand-btn" onclick="toggleProject(this)">
+                        <span class="btn-text">Read More</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                </div>
+            </div>
+            <div class="project-details-wrapper">
+                <div class="project-details-inner">
+                    <div class="project-details">
+                        <br>
+                        <h4>Additional Information</h4>
+                        <p>More details about the schematic design, component selection, and iterations of the 3D printed enclosure.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="project-card">
-            <img src="ARM.png" alt="Robotic Arm" class="project-img">
-            <div class="project-content">
-                <h3>3-DOF Robotic Arm & Inverse Kinematics</h3>
-                <span class="tag">Inverse Kinematics</span> <span class="tag">Robotics</span> <span class="tag">3-DOF</span>
-                <p>Designed and programmed a 3-Degree-of-Freedom (DOF) robotic arm. Successfully developed and implemented inverse kinematics algorithms to accurately calculate the required joint angles for precise 3D spatial positioning of the end-effector.</p>
+            <div class="project-main">
+                <img src="ARM.png" alt="Robotic Arm" class="project-img">
+                <div class="project-content">
+                    <h3>3-DOF Robotic Arm & Inverse Kinematics</h3>
+                    <span class="tag">Inverse Kinematics</span> <span class="tag">Robotics</span> <span class="tag">3-DOF</span>
+                    <p>Designed and programmed a 3-Degree-of-Freedom (DOF) robotic arm. Successfully developed and implemented inverse kinematics algorithms to accurately calculate the required joint angles for precise 3D spatial positioning of the end-effector.</p>
+                    
+                    <button class="expand-btn" onclick="toggleProject(this)">
+                        <span class="btn-text">Read More</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                </div>
+            </div>
+            <div class="project-details-wrapper">
+                <div class="project-details-inner">
+                    <div class="project-details">
+                        <br>
+                        <h4>Math & Kinematics</h4>
+                        <p>Expanded explanation of the transformation matrices and DH parameters used to solve the inverse kinematics equations.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="project-card">
-            <img src="PID.png" alt="Self Balancing Robot" class="project-img">
-            <div class="project-content">
-                <h3>2-Wheel Self-Balancing Robot</h3>
-                <span class="tag">PID Control</span> <span class="tag">Control Theory</span> <span class="tag">Sensor Fusion</span>
-                <p>Engineered a two-wheeled self-balancing robot utilizing a custom-tuned PID controller. Implemented real-time sensor fusion to continuously calculate the tilt angle and apply corrective motor outputs, maintaining upright stability under dynamic physical disturbances.</p>
+            <div class="project-main">
+                <img src="PID.png" alt="Self Balancing Robot" class="project-img">
+                <div class="project-content">
+                    <h3>2-Wheel Self-Balancing Robot</h3>
+                    <span class="tag">PID Control</span> <span class="tag">Control Theory</span> <span class="tag">Sensor Fusion</span>
+                    <p>Engineered a two-wheeled self-balancing robot utilizing a custom-tuned PID controller. Implemented real-time sensor fusion to continuously calculate the tilt angle and apply corrective motor outputs, maintaining upright stability under dynamic physical disturbances.</p>
+                    
+                    <button class="expand-btn" onclick="toggleProject(this)">
+                        <span class="btn-text">Read More</span>
+                        <span class="expand-icon">▼</span>
+                    </button>
+                </div>
+            </div>
+            <div class="project-details-wrapper">
+                <div class="project-details-inner">
+                    <div class="project-details">
+                        <br>
+                        <h4>Control System Design</h4>
+                        <p>Detailed view of the PID tuning process, Ziegler-Nichols method (if applicable), and sensor filter implementations like the Kalman filter or complementary filter.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -241,6 +387,24 @@
 <footer>
     <p>&copy; 2026 Ido David | Mechanical & Control Systems Engineer</p>
 </footer>
+
+<script>
+    function toggleProject(button) {
+        // מציאת הכרטיסייה הספציפית שלחצנו עליה
+        const card = button.closest('.project-card');
+        
+        // החלפת המצב בין פתוח לסגור (הוספה/הסרה של המחלקה)
+        card.classList.toggle('expanded');
+        
+        // עדכון הטקסט של הכפתור
+        const btnText = button.querySelector('.btn-text');
+        if (card.classList.contains('expanded')) {
+            btnText.textContent = 'Show Less';
+        } else {
+            btnText.textContent = 'Read More';
+        }
+    }
+</script>
 
 </body>
 </html>
