@@ -165,12 +165,11 @@
             margin-top: 1rem;
         }
 
-        /* עיצוב הגלריה הפנימית (וידאו ותמונה) */
         .media-gallery {
             display: flex;
             gap: 1.5rem;
             margin-top: 1.5rem;
-            flex-wrap: wrap; /* מאפשר שבירת שורה במסכים קטנים */
+            flex-wrap: wrap; 
         }
 
         .gallery-item {
@@ -189,7 +188,6 @@
             display: block;
         }
 
-        /* עיצוב כפתור יוטיוב בולט */
         .youtube-btn-large {
             display: inline-flex;
             align-items: center;
@@ -288,7 +286,7 @@
                 <img src="DOG.png" alt="Robot Dog Project" class="project-img">
                 <div class="project-content">
                     <h3>Quadrupedal Robot (Robot Dog) - Active Stabilization</h3>
-                    <span class="tag">C++</span> <span class="tag">Python</span> <span class="tag">Robotics</span> <span class="tag">Sensors</span> <span class="tag">SolidWorks</span>
+                    <span class="tag">C++</span> <span class="tag">Python</span> <span class="tag">Robotics</span> <span class="tag">Sensors</span> <span class="tag">SolidWorks</span> <span class="tag">Motion Control</span>
                     <p>Developed a hybrid quadruped-wheeled robot featuring an active self-stabilization system utilizing a Control Moment Gyroscope (CMG).</p>
                     
                     <button class="expand-btn" onclick="toggleProject(this)">
@@ -329,9 +327,9 @@
             <div class="project-main">
                 <img src="image_PCB.jpg" alt="PCB Design Project" class="project-img">
                 <div class="project-content">
-                    <h3>Custom Rotational Speed Sensor</h3>
+                    <h3>Custom RPM Sensor</h3>
                     <span class="tag">PCB Design</span> <span class="tag">SolidWorks</span> <span class="tag">3D Printing</span>
-                    <p>Designed and manufactured a custom PCB for an IR-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure designed for industrial environments.</p>
+                    <p>Designed and manufactured a custom PCB for an Infra-Red-based rotational speed sensor.</p>
                     
                     <button class="expand-btn" onclick="toggleProject(this)">
                         <span class="btn-text">Read More</span>
@@ -343,8 +341,24 @@
                 <div class="project-details-inner">
                     <div class="project-details">
                         <br>
-                        <h4>Additional Information</h4>
-                        <p>More details about the schematic design, component selection, and iterations of the 3D printed enclosure.</p>
+                        <h4>System Capabilities & Design</h4>
+                        <p>Designed and manufactured a custom PCB for an Infra-Red-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure designed for industrial environments.</p>
+                        <p>The sensor system is highly capable and engineered to accurately sample rotational speeds up to a maximum of <strong>15,000 RPM</strong>.</p>
+                        
+                        <div class="media-gallery">
+                            <div class="gallery-item">
+                                <img src="PC1.png" alt="RPM Sensor Component 1">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="PC2.png" alt="RPM Sensor Component 2">
+                            </div>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <a href="https://youtu.be/KueoWSnbWWg?si=q9UxTVsnTzjmjtgh" target="_blank" class="youtube-btn-large">
+                                ▶️ Watch Video on YouTube
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
