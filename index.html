@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ido David | Engineering Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <style>
         :root {
             --bg-dark: #121212;
@@ -165,6 +169,7 @@
             margin-top: 1rem;
         }
 
+        /* גלריה רגילה */
         .media-gallery {
             display: flex;
             gap: 1.5rem;
@@ -186,6 +191,41 @@
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        /* גלריה לפריטים מוקטנים (תמונות החיישן וסרטוני הזרוע) */
+        .gallery-small-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-small-item {
+            width: 180px; /* מקטין את הפריטים בצורה מבוקרת */
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #444;
+            background: #000;
+        }
+
+        .gallery-small-item img, .gallery-small-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* עיצוב חלונית הנוסחאות */
+        .math-container {
+            background: #151515;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-accent);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #333;
         }
 
         .youtube-btn-large {
@@ -265,6 +305,9 @@
                 min-width: unset;
                 margin: 1.5rem auto 0 auto;
             }
+            .gallery-small-item {
+                width: calc(50% - 1rem); /* 2 בשורה במובייל */
+            }
         }
     </style>
 </head>
@@ -342,14 +385,14 @@
                     <div class="project-details">
                         <br>
                         <h4>System Capabilities & Design</h4>
-                        <p>Designed and manufactured a custom PCB for an Infra-Red-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure designed for industrial environments.</p>
+                        <p>Designed and manufactured a custom PCB for an Infra-Red-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure.</p>
                         <p>The sensor system is highly capable and engineered to accurately sample rotational speeds up to a maximum of <strong>15,000 RPM</strong>.</p>
                         
-                        <div class="media-gallery">
-                            <div class="gallery-item">
+                        <div class="gallery-small-wrapper">
+                            <div class="gallery-small-item">
                                 <img src="PC1.png" alt="RPM Sensor Component 1">
                             </div>
-                            <div class="gallery-item">
+                            <div class="gallery-small-item">
                                 <img src="PC2.png" alt="RPM Sensor Component 2">
                             </div>
                         </div>
@@ -368,9 +411,9 @@
             <div class="project-main">
                 <img src="ARM.png" alt="Robotic Arm" class="project-img">
                 <div class="project-content">
-                    <h3>3-DOF Robotic Arm & Inverse Kinematics</h3>
+                    <h3>3-DOF Robotic Arm: Inverse Kinematics & Light Painting</h3>
                     <span class="tag">Inverse Kinematics</span> <span class="tag">Robotics</span> <span class="tag">3-DOF</span>
-                    <p>Designed and programmed a 3-Degree-of-Freedom (DOF) robotic arm. Successfully developed and implemented inverse kinematics algorithms to accurately calculate the required joint angles for precise 3D spatial positioning of the end-effector.</p>
+                    <p>Designed and 3D modeled a robotic arm featuring a red LED at the end-effector. Using custom inverse kinematics, the arm performs precise spatial movements to trace complex mathematical equations captured via long-exposure photography.</p>
                     
                     <button class="expand-btn" onclick="toggleProject(this)">
                         <span class="btn-text">Read More</span>
@@ -383,7 +426,36 @@
                     <div class="project-details">
                         <br>
                         <h4>Math & Kinematics</h4>
-                        <p>Expanded explanation of the transformation matrices and DH parameters used to solve the inverse kinematics equations.</p>
+                        <p>To achieve accurate 3D spatial positioning and trace the desired mathematical functions, the servo motors were meticulously mapped and calibrated. Given a target coordinate \((x, y, z)\) and the arm's link lengths \(L_2\) (bicep) and \(L_3\) (forearm), the precise joint angles \(\theta_1\), \(\theta_2\), and \(\theta_3\) are derived using the following Inverse Kinematics model:</p>
+                        
+                        <div class="math-container">
+                            $$ \theta_1 = \operatorname{atan2}(y, x) $$
+                            $$ d = \sqrt{x^2 + y^2} $$
+                            $$ r = \sqrt{d^2 + z^2} $$
+                            $$ \phi = \operatorname{atan2}(z, d) $$
+                            $$ \alpha = \arccos\left( \frac{L_2^2 + r^2 - L_3^2}{2 L_2 r} \right) $$
+                            $$ \theta_2 = \phi + \alpha $$
+                            $$ \cos(\theta_{elbow}) = \frac{L_2^2 + L_3^2 - r^2}{2 L_2 L_3} $$
+                            $$ \theta_3 = \arccos\left( \cos(\theta_{elbow}) \right) - \pi $$
+                        </div>
+
+                        <div class="gallery-small-wrapper">
+                            <div class="gallery-small-item">
+                                <video src="armv1.mov" autoplay loop muted playsinline></video>
+                            </div>
+                            <div class="gallery-small-item">
+                                <video src="armv2.mov" autoplay loop muted playsinline></video>
+                            </div>
+                            <div class="gallery-small-item">
+                                <video src="armv3.mov" autoplay loop muted playsinline></video>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <a href="https://youtu.be/lvzZWmBfGkk?si=k5PA3pZh0B7KpK8_" target="_blank" class="youtube-btn-large">
+                                ▶️ Watch Video on YouTube
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
