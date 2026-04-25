@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.Value"></script>
 
     <style>
         :root {
@@ -16,6 +16,7 @@
             --primary-accent: #3498db;
             --text-main: #e0e0e0;
             --text-muted: #b0b0b0;
+            --linkedin-blue: #0077b5;
         }
 
         body {
@@ -45,13 +46,7 @@
         }
 
         header h1 { margin: 0; font-size: 2.2rem; color: #fff; }
-        
-        header p { 
-            font-size: 1.5rem; 
-            font-weight: 600;
-            color: var(--primary-accent); 
-            margin: 0.5rem 0; 
-        }
+        header p { font-size: 1.5rem; font-weight: 600; color: var(--primary-accent); margin: 0.5rem 0; }
 
         .container {
             max-width: 900px;
@@ -60,14 +55,7 @@
         }
 
         section { margin-bottom: 4rem; }
-        
-        h2 { 
-            font-size: 1.8rem;
-            border-left: 4px solid var(--primary-accent);
-            padding-left: 15px;
-            color: #fff;
-            margin-bottom: 1.5rem;
-        }
+        h2 { font-size: 1.8rem; border-left: 4px solid var(--primary-accent); padding-left: 15px; color: #fff; margin-bottom: 1.5rem; }
 
         .project-card {
             background: var(--bg-card);
@@ -79,17 +67,9 @@
             overflow: hidden;
         }
 
-        .project-main {
-            display: flex;
-            flex-direction: row-reverse;
-            align-items: center;
-        }
+        .project-main { display: flex; flex-direction: row-reverse; align-items: center; }
 
-        .project-content { 
-            padding: 1.5rem; 
-            flex: 1; 
-        }
-        
+        .project-content { padding: 1.5rem; flex: 1; }
         .project-content h3 { margin: 0; color: var(--primary-accent); font-size: 1.4rem; }
         
         .tag {
@@ -113,201 +93,51 @@
         }
 
         .expand-btn {
-            background: none;
-            border: none;
-            color: var(--primary-accent);
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 0;
-            margin-top: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s;
+            background: none; border: none; color: var(--primary-accent); font-family: inherit; font-size: 1rem; font-weight: bold; cursor: pointer; padding: 0; margin-top: 1rem; display: inline-flex; align-items: center; gap: 8px;
         }
 
-        .expand-btn:hover {
-            color: #fff;
-        }
+        .expand-icon { display: inline-block; transition: transform 0.4s ease; font-size: 0.9rem; }
+        .project-card.expanded .expand-icon { transform: rotate(180deg); }
 
-        .expand-icon {
-            display: inline-block;
-            transition: transform 0.4s ease;
-            font-size: 0.9rem;
-        }
-
-        .project-card.expanded .expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .project-details-wrapper {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s ease-out;
-        }
-
-        .project-card.expanded .project-details-wrapper {
-            grid-template-rows: 1fr;
-        }
-
-        .project-details-inner {
-            overflow: hidden;
-        }
+        .project-details-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s ease-out; }
+        .project-card.expanded .project-details-wrapper { grid-template-rows: 1fr; }
+        .project-details-inner { overflow: hidden; }
 
         .project-details {
-            padding: 0 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease, padding 0.3s ease;
+            padding: 0 1.5rem; opacity: 0; transition: opacity 0.3s ease, padding 0.3s ease;
         }
 
         .project-card.expanded .project-details {
-            padding: 0 1.5rem 1.5rem 1.5rem;
-            opacity: 1;
-            border-top: 1px solid #333;
-            margin-top: 1rem;
+            padding: 0 1.5rem 1.5rem 1.5rem; opacity: 1; border-top: 1px solid #333; margin-top: 1rem;
         }
 
-        /* גלריה רגילה */
-        .media-gallery {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap; 
+        .gallery-small-wrapper { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .gallery-small-item { width: 180px; border-radius: 8px; overflow: hidden; border: 1px solid #444; background: #000; }
+        .gallery-small-item img, .gallery-small-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .youtube-btn-large, .linkedin-btn-large {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px; color: #ffffff; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; margin-top: 2rem; margin-bottom: 1rem; transition: all 0.3s ease;
         }
 
-        .gallery-item {
-            flex: 1;
-            min-width: 250px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #444;
-            background: #000;
-        }
+        .youtube-btn-large { background-color: #ff0000; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); }
+        .youtube-btn-large:hover { background-color: #cc0000; transform: translateY(-2px); }
 
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+        .linkedin-btn-large { background-color: var(--linkedin-blue); box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3); }
+        .linkedin-btn-large:hover { background-color: #005582; transform: translateY(-2px); }
 
-        /* גלריה לפריטים מוקטנים (תמונות החיישן וסרטוני הזרוע) */
-        .gallery-small-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .gallery-small-item {
-            width: 180px; /* מקטין את הפריטים בצורה מבוקרת */
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #444;
-            background: #000;
-        }
-
-        .gallery-small-item img, .gallery-small-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* עיצוב חלונית הנוסחאות */
-        .math-container {
-            background: #151515;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 3px solid var(--primary-accent);
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            border: 1px solid #333;
-        }
-
-        .youtube-btn-large {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background-color: #ff0000;
-            color: #ffffff;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
-        }
-
-        .youtube-btn-large:hover {
-            background-color: #cc0000;
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
-        }
-
-        .about-flex {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
+        .about-flex { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
         .about-text { flex: 2; min-width: 300px; }
-        .profile-img-large {
-            flex: 1;
-            min-width: 200px;
-            max-width: 250px;
-            border-radius: 15px;
-            object-fit: cover;
-        }
+        .profile-img-large { flex: 1; min-width: 200px; max-width: 250px; border-radius: 15px; object-fit: cover; }
 
-        .contact-info {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid #333;
-        }
-        
-        .contact-link {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            margin: 20px 0;
-            font-size: 1.1rem;
-            border: 1px solid var(--primary-accent);
-            padding: 10px 25px;
-            border-radius: 30px;
-            transition: all 0.3s;
-        }
-
-        .contact-link:hover {
-            background: var(--primary-accent);
-            color: #fff;
-        }
+        .contact-info { background: var(--bg-card); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid #333; }
+        .contact-link { color: var(--text-main); text-decoration: none; font-weight: bold; display: inline-block; margin: 20px 0; font-size: 1.1rem; border: 1px solid var(--primary-accent); padding: 10px 25px; border-radius: 30px; transition: all 0.3s; }
+        .contact-link:hover { background: var(--primary-accent); color: #fff; }
 
         footer { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #333; }
 
         @media (max-width: 768px) {
-            .project-main {
-                flex-direction: column;
-            }
-            .project-img {
-                width: calc(100% - 3rem);
-                min-width: unset;
-                margin: 1.5rem auto 0 auto;
-            }
-            .gallery-small-item {
-                width: calc(50% - 1rem); /* 2 בשורה במובייל */
-            }
+            .project-main { flex-direction: column; }
+            .project-img { width: calc(100% - 3rem); min-width: unset; margin: 1.5rem auto 0 auto; }
         }
     </style>
 </head>
@@ -331,7 +161,6 @@
                     <h3>Quadrupedal Robot (Robot Dog) - Active Stabilization</h3>
                     <span class="tag">C++</span> <span class="tag">Python</span> <span class="tag">Robotics</span> <span class="tag">Sensors</span> <span class="tag">SolidWorks</span> <span class="tag">Motion Control</span>
                     <p>Developed a hybrid quadruped-wheeled robot featuring an active self-stabilization system utilizing a Control Moment Gyroscope (CMG).</p>
-                    
                     <button class="expand-btn" onclick="toggleProject(this)">
                         <span class="btn-text">Read More</span>
                         <span class="expand-icon">▼</span>
@@ -346,20 +175,16 @@
                         <p>For my final research project, I developed a hybrid quadruped wheeled robot. The goal of the study was to examine the effect of integrating a Control Moment Gyroscope (CMG) as an additional active stabilization element for improving the robot’s stability.</p>
                         <p>The robotic system includes a Proportional controller for correcting the robot’s lateral tilt. In addition, the CMG system generates active control moments to provide further stabilization.</p>
                         <p>As part of the research, experiments were conducted with and without the CMG system, while applying controlled dynamic disturbances, in order to evaluate its contribution to improving the robot’s dynamic stability.</p>
-                        
-                        <div class="media-gallery">
-                            <div class="gallery-item">
+                        <div class="gallery-small-wrapper">
+                            <div class="gallery-small-item" style="width: 250px;">
                                 <video src="V.mov" autoplay loop muted playsinline></video>
                             </div>
-                            <div class="gallery-item">
+                            <div class="gallery-small-item" style="width: 250px;">
                                 <img src="real_rob.jpg" alt="Real Robot System">
                             </div>
                         </div>
-
                         <div style="text-align: center;">
-                            <a href="https://youtu.be/P0Reh9JByU4?si=QC-rNN_kYvCaXGna" target="_blank" class="youtube-btn-large">
-                                ▶️ Watch Video on YouTube
-                            </a>
+                            <a href="https://youtu.be/P0Reh9JByU4?si=QC-rNN_kYvCaXGna" target="_blank" class="youtube-btn-large">▶️ Watch Video on YouTube</a>
                         </div>
                     </div>
                 </div>
@@ -368,12 +193,11 @@
 
         <div class="project-card">
             <div class="project-main">
-                <img src="image_PCB.jpg" alt="PCB Design Project" class="project-img">
+                <img src="image_PCB.jpg" alt="RPM Sensor Project" class="project-img">
                 <div class="project-content">
                     <h3>Custom RPM Sensor</h3>
                     <span class="tag">PCB Design</span> <span class="tag">SolidWorks</span> <span class="tag">3D Printing</span>
                     <p>Designed and manufactured a custom PCB for an Infra-Red-based rotational speed sensor.</p>
-                    
                     <button class="expand-btn" onclick="toggleProject(this)">
                         <span class="btn-text">Read More</span>
                         <span class="expand-icon">▼</span>
@@ -387,20 +211,12 @@
                         <h4>System Capabilities & Design</h4>
                         <p>Designed and manufactured a custom PCB for an Infra-Red-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure.</p>
                         <p>The sensor system is highly capable and engineered to accurately sample rotational speeds up to a maximum of <strong>15,000 RPM</strong>.</p>
-                        
                         <div class="gallery-small-wrapper">
-                            <div class="gallery-small-item">
-                                <img src="PC1.png" alt="RPM Sensor Component 1">
-                            </div>
-                            <div class="gallery-small-item">
-                                <img src="PC2.png" alt="RPM Sensor Component 2">
-                            </div>
+                            <div class="gallery-small-item"><img src="PC1.png" alt="RPM Sensor 1"></div>
+                            <div class="gallery-small-item"><img src="PC2.png" alt="RPM Sensor 2"></div>
                         </div>
-
                         <div style="text-align: center;">
-                            <a href="https://youtu.be/KueoWSnbWWg?si=q9UxTVsnTzjmjtgh" target="_blank" class="youtube-btn-large">
-                                ▶️ Watch Video on YouTube
-                            </a>
+                            <a href="https://youtu.be/KueoWSnbWWg?si=q9UxTVsnTzjmjtgh" target="_blank" class="youtube-btn-large">▶️ Watch Video on YouTube</a>
                         </div>
                     </div>
                 </div>
@@ -413,8 +229,7 @@
                 <div class="project-content">
                     <h3>3-DOF Robotic Arm: Inverse Kinematics & Light Painting</h3>
                     <span class="tag">Inverse Kinematics</span> <span class="tag">Robotics</span> <span class="tag">3-DOF</span>
-                    <p>Designed and 3D modeled a robotic arm featuring a red LED at the end-effector. Using custom inverse kinematics, the arm performs precise spatial movements to trace complex mathematical equations captured via long-exposure photography.</p>
-                    
+                    <p>Designed and 3D modeled a robotic arm featuring a red LED end-effector, tracing mathematical equations via long-exposure photography.</p>
                     <button class="expand-btn" onclick="toggleProject(this)">
                         <span class="btn-text">Read More</span>
                         <span class="expand-icon">▼</span>
@@ -426,35 +241,21 @@
                     <div class="project-details">
                         <br>
                         <h4>Math & Kinematics</h4>
-                        <p>To achieve accurate 3D spatial positioning and trace the desired mathematical functions, the servo motors were meticulously mapped and calibrated. Given a target coordinate \((x, y, z)\) and the arm's link lengths \(L_2\) (bicep) and \(L_3\) (forearm), the precise joint angles \(\theta_1\), \(\theta_2\), and \(\theta_3\) are derived using the following Inverse Kinematics model:</p>
-                        
-                        <div class="math-container">
-                            $$ \theta_1 = \operatorname{atan2}(y, x) $$
-                            $$ d = \sqrt{x^2 + y^2} $$
-                            $$ r = \sqrt{d^2 + z^2} $$
-                            $$ \phi = \operatorname{atan2}(z, d) $$
-                            $$ \alpha = \arccos\left( \frac{L_2^2 + r^2 - L_3^2}{2 L_2 r} \right) $$
-                            $$ \theta_2 = \phi + \alpha $$
-                            $$ \cos(\theta_{elbow}) = \frac{L_2^2 + L_3^2 - r^2}{2 L_2 L_3} $$
-                            $$ \theta_3 = \arccos\left( \cos(\theta_{elbow}) \right) - \pi $$
+                        <p>Using the following Inverse Kinematics model for precise spatial positioning:</p>
+                        <div style="background: #151515; padding: 1.5rem; border-radius: 8px; border: 1px solid #333; margin: 1.5rem 0; font-family: serif; color: #fff;">
+                            θ₁ = atan2(y, x) <br>
+                            d = √(x² + y²) <br>
+                            r = √(d² + z²) <br>
+                            α = arccos((L₂² + r² - L₃²) / (2L₂r)) <br>
+                            θ₂ = atan2(z, d) + α
                         </div>
-
                         <div class="gallery-small-wrapper">
-                            <div class="gallery-small-item">
-                                <video src="armv1.mov" autoplay loop muted playsinline></video>
-                            </div>
-                            <div class="gallery-small-item">
-                                <video src="armv2.mov" autoplay loop muted playsinline></video>
-                            </div>
-                            <div class="gallery-small-item">
-                                <video src="armv3.mov" autoplay loop muted playsinline></video>
-                            </div>
+                            <div class="gallery-small-item"><video src="armv1.mov" autoplay loop muted playsinline></video></div>
+                            <div class="gallery-small-item"><video src="armv2.mov" autoplay loop muted playsinline></video></div>
+                            <div class="gallery-small-item"><video src="armv3.mov" autoplay loop muted playsinline></video></div>
                         </div>
-
                         <div style="text-align: center;">
-                            <a href="https://youtu.be/lvzZWmBfGkk?si=k5PA3pZh0B7KpK8_" target="_blank" class="youtube-btn-large">
-                                ▶️ Watch Video on YouTube
-                            </a>
+                            <a href="https://youtu.be/lvzZWmBfGkk?si=k5PA3pZh0B7KpK8_" target="_blank" class="youtube-btn-large">▶️ Watch Video on YouTube</a>
                         </div>
                     </div>
                 </div>
@@ -465,10 +266,9 @@
             <div class="project-main">
                 <img src="PID.png" alt="Self Balancing Robot" class="project-img">
                 <div class="project-content">
-                    <h3>2-Wheel Self-Balancing Robot</h3>
-                    <span class="tag">PID Control</span> <span class="tag">Control Theory</span> <span class="tag">Sensor Fusion</span>
-                    <p>Engineered a two-wheeled self-balancing robot utilizing a custom-tuned PID controller. Implemented real-time sensor fusion to continuously calculate the tilt angle and apply corrective motor outputs, maintaining upright stability under dynamic physical disturbances.</p>
-                    
+                    <h3>2-Wheel Self-Balancing Robot: PID Control</h3>
+                    <span class="tag">PID Control</span> <span class="tag">Control Theory</span> <span class="tag">Sensor Fusion</span> <span class="tag">SolidWorks</span> <span class="tag">Kalman Filter</span>
+                    <p>Designed a two-wheeled self-balancing robot utilizing a custom-tuned PID controller.</p>
                     <button class="expand-btn" onclick="toggleProject(this)">
                         <span class="btn-text">Read More</span>
                         <span class="expand-icon">▼</span>
@@ -479,8 +279,14 @@
                 <div class="project-details-inner">
                     <div class="project-details">
                         <br>
-                        <h4>Control System Design</h4>
-                        <p>Detailed view of the PID tuning process, Ziegler-Nichols method (if applicable), and sensor filter implementations like the Kalman filter or complementary filter.</p>
+                        <h4>Design & Control Strategy</h4>
+                        <p>Designed and built a self-balancing robot, including mechanical design in SolidWorks, 3D printing, and full system integration.</p>
+                        <p>Implemented a real-time control system using a PID controller based on tilt angle measurements from a gyroscope. Sensor data was filtered using a Kalman Filter to reduce noise and improve stability.</p>
+                        <div style="text-align: center;">
+                            <a href="https://www.linkedin.com/posts/ido-david-258691299_%D7%A4%D7%A8%D7%95%D7%99%D7%99%D7%A7%D7%98-%D7%A0%D7%95%D7%A1%D7%A3-%D7%A9%D7%94%D7%99%D7%99%D7%AA%D7%99-%D7%97%D7%99%D7%99%D7%91-%D7%9C%D7%A0%D7%A1%D7%95%D7%AA-%D7%95%D7%94%D7%A4%D7%A2%D7%9D-%D7%A8%D7%95%D7%91%D7%95%D7%98-activity-7355209025443049472-re4X?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEgueSQBPBzLkHcP-gdOY4RbdNQjUTdIV-s" target="_blank" class="linkedin-btn-large">
+                                View Project on LinkedIn
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -492,11 +298,8 @@
         <h2>About Me</h2>
         <div class="about-flex">
             <div class="about-text">
-                <p>
-                    Mechanical engineer specializing in electro-mechanical and opto-mechanical systems. 
-                    Experienced in integrating high-precision machinery within clean-room environments.
-                </p>
-                <p>Currently pursuing a Master of Science (M.Sc.) in Robotics and Control, focusing on building intelligent control systems and end-to-end robotic solutions.</p>
+                <p>Mechanical engineer specializing in electro-mechanical systems. Experienced in integrating high-precision machinery.</p>
+                <p>Currently pursuing a Master of Science (M.Sc.) in Robotics and Control.</p>
             </div>
             <img src="my_self.jpg" alt="Ido David" class="profile-img-large">
         </div>
@@ -505,11 +308,9 @@
     <section id="contact">
         <h2>Contact Information</h2>
         <div class="contact-info">
-            <p>Feel free to reach out for professional opportunities or collaborations:</p>
-            <p style="font-size: 1.2rem; margin: 15px 0;"><strong>Email:</strong> idodavid2244@gmail.com</p>
-            <p style="font-size: 1.2rem;"><strong>Phone:</strong> 052-4280941</p>
-            
-            <a href="https://www.linkedin.com/in/ido-david-258691299?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" class="contact-link">Connect on LinkedIn</a>
+            <p>Email: idodavid2244@gmail.com</p>
+            <p>Phone: 052-4280941</p>
+            <a href="https://www.linkedin.com/in/ido-david-258691299" target="_blank" class="contact-link">Connect on LinkedIn</a>
         </div>
     </section>
 
@@ -523,13 +324,8 @@
     function toggleProject(button) {
         const card = button.closest('.project-card');
         card.classList.toggle('expanded');
-        
         const btnText = button.querySelector('.btn-text');
-        if (card.classList.contains('expanded')) {
-            btnText.textContent = 'Show Less';
-        } else {
-            btnText.textContent = 'Read More';
-        }
+        btnText.textContent = card.classList.contains('expanded') ? 'Show Less' : 'Read More';
     }
 </script>
 
