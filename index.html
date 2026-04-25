@@ -159,6 +159,22 @@
         .gallery-small-item { width: 180px; border-radius: 8px; overflow: hidden; border: 1px solid #444; background: #000; }
         .gallery-small-item img, .gallery-small-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+        /* קלאס ייעודי לתמונות מרובעות מוקטנות (פרויקט 2) */
+        .gallery-square-item {
+            width: 150px;
+            aspect-ratio: 1 / 1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #444;
+            background: #000;
+        }
+        .gallery-square-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         /* כפתורים מיוחדים */
         .youtube-btn-large, .linkedin-btn-large {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px; color: #ffffff; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; margin-top: 2rem; margin-bottom: 1rem; transition: all 0.3s ease;
@@ -210,10 +226,10 @@
             line-height: 1.7;
         }
 
-        /* תמונה ביחס 16:9 ללא עיוות */
+        /* תמונת אורך ביחס 9:16 ללא עיוות */
         .experience-img {
-            width: 280px;
-            aspect-ratio: 16 / 9;
+            width: 180px;
+            aspect-ratio: 9 / 16;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid #444;
@@ -230,7 +246,7 @@
             .project-main { flex-direction: column; }
             .project-img { width: calc(100% - 3rem); min-width: unset; margin: 1.5rem auto 0 auto; }
             .experience-box { flex-direction: column; text-align: center; padding: 1.5rem; }
-            .experience-img { width: 100%; max-width: 320px; }
+            .experience-img { width: 100%; max-width: 200px; margin: 0 auto; }
         }
     </style>
 </head>
@@ -304,9 +320,9 @@
                         <h4>System Capabilities & Design</h4>
                         <p>Ido designed and manufactured a custom PCB for an Infra Red-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure.</p>
                         <p>The sensor system is highly capable and engineered to accurately sample rotational speeds up to a maximum of 15,000 RPM.</p>
-                        <div class="media-gallery">
-                            <div class="gallery-item"><img src="PC1.png" alt="RPM Sensor 1"></div>
-                            <div class="gallery-item"><img src="PC2.png" alt="RPM Sensor 2"></div>
+                        <div class="gallery-small-wrapper">
+                            <div class="gallery-square-item"><img src="PC1.png" alt="RPM Sensor 1"></div>
+                            <div class="gallery-square-item"><img src="PC2.png" alt="RPM Sensor 2"></div>
                         </div>
                         <div style="text-align: center;">
                             <a href="https://youtu.be/KueoWSnbWWg?si=q9UxTVsnTzjmjtgh" target="_blank" class="youtube-btn-large">▶️ Watch Video on YouTube</a>
@@ -396,7 +412,7 @@
         <h2>About Me</h2>
         <div class="about-flex">
             <div class="about-text">
-                <p>I am an engineer specializing in Mechatronics and Robotics. Combining a B.Sc. in Mechanical Engineering with a Mechatronics Practical Engineer diploma, I thrive at the exact intersection of hardware, electronics, and code. At heart, I am a hands-on "maker." From building quadruped robots from scratch to designing custom PCBs and 3D-printing parts, my passion is bringing complex ideas to life. I love the multidisciplinary challenge of making mechanics, sensors, and software work perfectly together.</p>
+                <p>Ido is an engineer specializing in Mechatronics and Robotics. Combining a B.Sc. in Mechanical Engineering with a Mechatronics Practical Engineer diploma, he thrives at the exact intersection of hardware, electronics, and code. At heart, he is a hands-on "maker." From building quadruped robots from scratch to designing custom PCBs and 3D-printing parts, his passion is bringing complex ideas to life. He loves the multidisciplinary challenge of making mechanics, sensors, and software work perfectly together.</p>
             </div>
             <img src="my_self.jpg" alt="Ido David" class="profile-img-large">
         </div>
