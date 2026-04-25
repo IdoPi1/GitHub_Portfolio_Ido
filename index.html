@@ -6,8 +6,14 @@
     <title>Ido David | Engineering Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.Value"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <style>
         :root {
@@ -109,6 +115,17 @@
 
         .project-card.expanded .project-details {
             padding: 0 1.5rem 1.5rem 1.5rem; opacity: 1; border-top: 1px solid #333; margin-top: 1rem;
+        }
+
+        .math-container {
+            background: #151515;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-accent);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #333;
+            color: #fff;
         }
 
         .gallery-small-wrapper { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
@@ -228,8 +245,8 @@
                 <img src="ARM.png" alt="Robotic Arm" class="project-img">
                 <div class="project-content">
                     <h3>3-DOF Robotic Arm: Inverse Kinematics & Light Painting</h3>
-                    <span class="tag">Inverse Kinematics</span> <span class="tag">Robotics</span> <span class="tag">3-DOF</span>
-                    <p>Designed and 3D modeled a robotic arm featuring a red LED end-effector, tracing mathematical equations via long-exposure photography.</p>
+                    <span class="tag">Inverse Kinematics</span> <span class="tag">Robotics</span> <span class="tag">3-DOF</span> <span class="tag">SolidWorks</span>
+                    <p>Designed and 3D modeled in SolidWorks a robotic arm featuring a red LED end-effector, tracing mathematical equations via long-exposure photography.</p>
                     <button class="expand-btn" onclick="toggleProject(this)">
                         <span class="btn-text">Read More</span>
                         <span class="expand-icon">▼</span>
@@ -241,14 +258,19 @@
                     <div class="project-details">
                         <br>
                         <h4>Math & Kinematics</h4>
-                        <p>Using the following Inverse Kinematics model for precise spatial positioning:</p>
-                        <div style="background: #151515; padding: 1.5rem; border-radius: 8px; border: 1px solid #333; margin: 1.5rem 0; font-family: serif; color: #fff;">
-                            θ₁ = atan2(y, x) <br>
-                            d = √(x² + y²) <br>
-                            r = √(d² + z²) <br>
-                            α = arccos((L₂² + r² - L₃²) / (2L₂r)) <br>
-                            θ₂ = atan2(z, d) + α
+                        <p>To achieve accurate 3D spatial positioning and trace the desired mathematical functions, the servo motors were meticulously mapped and calibrated. Given a target coordinate $(x, y, z)$ and the arm's link lengths $L_2$ (bicep) and $L_3$ (forearm), the precise joint angles $\theta_1$, $\theta_2$, and $\theta_3$ are derived using the following Inverse Kinematics model:</p>
+                        
+                        <div class="math-container">
+                            $$\theta_1 = \operatorname{atan2}(y, x)$$
+                            $$d = \sqrt{x^2 + y^2}$$
+                            $$r = \sqrt{d^2 + z^2}$$
+                            $$\phi = \operatorname{atan2}(z, d)$$
+                            $$\alpha = \arccos\left( \frac{L_2^2 + r^2 - L_3^2}{2 L_2 r} \right)$$
+                            $$\theta_2 = \phi + \alpha$$
+                            $$\cos(\theta_{elbow}) = \frac{L_2^2 + L_3^2 - r^2}{2 L_2 L_3}$$
+                            $$\theta_3 = \arccos\left( \cos(\theta_{elbow}) \right) - \pi$$
                         </div>
+
                         <div class="gallery-small-wrapper">
                             <div class="gallery-small-item"><video src="armv1.mov" autoplay loop muted playsinline></video></div>
                             <div class="gallery-small-item"><video src="armv2.mov" autoplay loop muted playsinline></video></div>
