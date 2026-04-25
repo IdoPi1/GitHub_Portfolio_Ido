@@ -154,7 +154,7 @@
             display: block;
         }
 
-        /* גלריות קטנות יותר (למשל ל-3 סרטוני הזרוע) */
+        /* גלריות קטנות יותר */
         .gallery-small-wrapper { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
         .gallery-small-item { width: 180px; border-radius: 8px; overflow: hidden; border: 1px solid #444; background: #000; }
         .gallery-small-item img, .gallery-small-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -170,22 +170,24 @@
         .linkedin-btn-large { background-color: var(--linkedin-blue); box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3); }
         .linkedin-btn-large:hover { background-color: #005582; transform: translateY(-2px); }
 
-        /* אזור About ו-Contact */
-        .about-flex { display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+        /* אזור About */
+        .about-flex { display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .about-text { flex: 2; min-width: 300px; }
         .profile-img-large { flex: 1; min-width: 200px; max-width: 250px; border-radius: 15px; object-fit: cover; }
 
-        /* תיבת ניסיון תעסוקתי */
+        /* מלבן הניסיון המקצועי - גדול ובולט */
         .experience-box {
-            background: #1a1a1a;
+            background: var(--bg-card);
             border: 1px solid #333;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-top: 2rem;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 1rem;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            border-left: 4px solid var(--primary-accent);
+            gap: 2rem;
+            border-left: 5px solid var(--primary-accent);
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .experience-content {
@@ -195,22 +197,27 @@
         .experience-content h3 {
             color: #fff;
             margin-top: 0;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
         }
 
         .experience-content p {
             margin: 0;
-            font-size: 0.95rem;
-            color: var(--text-muted);
+            font-size: 1.05rem;
+            color: var(--text-main);
+            line-height: 1.7;
         }
 
+        /* תמונה ביחס 16:9 ללא עיוות */
         .experience-img {
-            width: 110px;
-            height: 150px;
+            width: 280px;
+            aspect-ratio: 16 / 9;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid #444;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .contact-info { background: var(--bg-card); padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid #333; }
@@ -222,7 +229,8 @@
         @media (max-width: 768px) {
             .project-main { flex-direction: column; }
             .project-img { width: calc(100% - 3rem); min-width: unset; margin: 1.5rem auto 0 auto; }
-            .experience-box { flex-direction: column; text-align: center; }
+            .experience-box { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .experience-img { width: 100%; max-width: 320px; }
         }
     </style>
 </head>
@@ -257,9 +265,9 @@
                     <div class="project-details">
                         <br>
                         <h4>Research & Implementation Overview</h4>
-                        <p>For my final research project, I developed a hybrid quadruped wheeled robot. The goal of the study was to examine the effect of integrating a Control Moment Gyroscope (CMG) as an additional active stabilization element for improving the robot’s stability.</p>
+                        <p>For his final research project, Ido developed a hybrid quadruped wheeled robot. The goal of the study was to examine the effect of integrating a Control Moment Gyroscope (CMG) as an additional active stabilization element for improving the robot’s stability.</p>
                         <p>The robotic system includes a Proportional controller for correcting the robot’s lateral tilt. In addition, the CMG system generates active control moments to provide further stabilization.</p>
-                        <p>As part of the research, experiments were conducted with and without the CMG system, while applying controlled dynamic disturbances, in order to evaluate its contribution to improving the robot’s dynamic stability.</p>
+                        <p>Experiments were conducted with and without the CMG system, while applying controlled dynamic disturbances, in order to evaluate its contribution to improving the robot’s dynamic stability.</p>
                         <div class="media-gallery">
                             <div class="gallery-item">
                                 <video src="V.mov" autoplay loop muted playsinline></video>
@@ -294,8 +302,8 @@
                     <div class="project-details">
                         <br>
                         <h4>System Capabilities & Design</h4>
-                        <p>Designed and manufactured a custom PCB for an Infra Red-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure.</p>
-                        <p>The sensor system is highly capable and engineered to accurately sample rotational speeds up to a maximum of <strong>15,000 RPM</strong>.</p>
+                        <p>Ido designed and manufactured a custom PCB for an Infra Red-based rotational speed sensor. The system integrates an OLED display for real-time data visualization and a custom 3D-printed enclosure.</p>
+                        <p>The sensor system is highly capable and engineered to accurately sample rotational speeds up to a maximum of 15,000 RPM.</p>
                         <div class="media-gallery">
                             <div class="gallery-item"><img src="PC1.png" alt="RPM Sensor 1"></div>
                             <div class="gallery-item"><img src="PC2.png" alt="RPM Sensor 2"></div>
@@ -370,8 +378,8 @@
                     <div class="project-details">
                         <br>
                         <h4>Design & Control Strategy</h4>
-                        <p>Designed and built a self-balancing robot, including mechanical design in SolidWorks, 3D printing, and full system integration.</p>
-                        <p>Implemented a real-time control system using a PID controller based on tilt angle measurements from a gyroscope. Sensor data was filtered using a Kalman Filter to reduce noise and improve stability.</p>
+                        <p>Ido designed and built a self-balancing robot, including mechanical design in SolidWorks, 3D printing, and full system integration.</p>
+                        <p>He implemented a real-time control system using a PID controller based on tilt angle measurements from a gyroscope. Sensor data was filtered using a Kalman Filter to reduce noise and improve stability.</p>
                         <div style="text-align: center;">
                             <a href="https://www.linkedin.com/posts/ido-david-258691299_%D7%A4%D7%A8%D7%95%D7%99%D7%99%D7%A7%D7%98-%D7%A0%D7%95%D7%A1%D7%A3-%D7%A9%D7%94%D7%99%D7%99%D7%AA%D7%99-%D7%97%D7%99%D7%99%D7%91-%D7%9C%D7%A0%D7%A1%D7%95%D7%AA-%D7%95%D7%94%D7%A4%D7%A2%D7%9D-%D7%A8%D7%95%D7%91%D7%95%D7%98-activity-7355209025443049472-re4X?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEgueSQBPBzLkHcP-gdOY4RbdNQjUTdIV-s" target="_blank" class="linkedin-btn-large">
                                 🔗 View Project on LinkedIn
@@ -388,17 +396,17 @@
         <h2>About Me</h2>
         <div class="about-flex">
             <div class="about-text">
-                <p>I am an engineer specializing in Mechatronics and Robotics. Combining a B.Sc. in Mechanical Engineering with a Mechatronics Practical Engineer diploma, I thrive at the exact intersection of hardware, electronics, and code. At heart, I am a hands-on "maker." From building quadruped robots from scratch to designing custom PCBs and 3D-printing parts, my passion is bringing complex ideas to life. I love the multidisciplinary challenge of making mechanics, sensors, and software work perfectly together.</p>
-                
-                <div class="experience-box">
-                    <div class="experience-content">
-                        <h3>Professional Experience</h3>
-                        <p>1 year of hands-on industry experience as an Electro-Mechanical and Opto-Mechanical Integrator in the semiconductor field. Working inside Class 1000 cleanrooms, he assembled, calibrated, and troubleshooted high-precision systems. This role gave him a strong foundation in real-world manufacturing, system-level problem-solving, and strict quality standards.</p>
-                    </div>
-                    <img src="MY_W.jpg" alt="Ido at work" class="experience-img">
-                </div>
+                <p>Ido is an engineer specializing in Mechatronics and Robotics. Combining a B.Sc. in Mechanical Engineering with a Mechatronics Practical Engineer diploma, he thrives at the exact intersection of hardware, electronics, and code. At heart, he is a hands-on "maker." From building quadruped robots from scratch to designing custom PCBs and 3D-printing parts, his passion is bringing complex ideas to life. He loves the multidisciplinary challenge of making mechanics, sensors, and software work perfectly together.</p>
             </div>
             <img src="my_self.jpg" alt="Ido David" class="profile-img-large">
+        </div>
+
+        <div class="experience-box">
+            <div class="experience-content">
+                <h3>My Experience</h3>
+                <p>Ido has 1 year of hands-on industry experience as an Electro-Mechanical and Opto-Mechanical Integrator in the semiconductor field. Working inside Class 1000 cleanrooms, he assembled, calibrated, and troubleshooted high-precision systems. This role provided him with a strong foundation in real-world manufacturing, system-level problem-solving, and strict quality standards.</p>
+            </div>
+            <img src="MY_W.jpg" alt="Ido at work" class="experience-img">
         </div>
     </section>
 
