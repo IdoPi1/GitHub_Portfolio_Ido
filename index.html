@@ -269,17 +269,15 @@
                         <h4>Math & Kinematics</h4>
                         <p>To achieve accurate 3D spatial positioning and trace the desired mathematical functions, the servo motors were meticulously mapped and calibrated. Given a target coordinate $(x, y, z)$ and the arm's link lengths $L_2$ (bicep) and $L_3$ (forearm), the precise joint angles $\theta_1$, $\theta_2$, and $\theta_3$ are derived using the following Inverse Kinematics model:</p>
                         
-                        <div class="math-container">
-                            $$ \begin{aligned}
-                            \theta_1 &= \operatorname{atan2}(y, x) \\
-                            d &= \sqrt{x^2 + y^2} \\
-                            r &= \sqrt{d^2 + z^2} \\
-                            \phi &= \operatorname{atan2}(z, d) \\
-                            \alpha &= \arccos\left( \frac{L_2^2 + r^2 - L_3^2}{2 L_2 r} \right) \\
-                            \theta_2 &= \phi + \alpha \\
-                            \cos(\theta_{\text{elbow}}) &= \frac{L_2^2 + L_3^2 - r^2}{2 L_2 L_3} \\
-                            \theta_3 &= \arccos\left( \cos(\theta_{\text{elbow}}) \right) - \pi
-                            \end{aligned} $$
+                        <div class="math-container" style="font-size: 0.9rem; padding: 1rem;">
+                            $$ \theta_1 = \operatorname{atan2}(y, x) $$
+                            $$ d = \sqrt{x^2 + y^2} $$
+                            $$ r = \sqrt{d^2 + z^2} $$
+                            $$ \phi = \operatorname{atan2}(z, d) $$
+                            $$ \alpha = \arccos\left( \frac{L_2^2 + r^2 - L_3^2}{2 L_2 r} \right) $$
+                            $$ \theta_2 = \phi + \alpha $$
+                            $$ \cos(\theta_{elbow}) = \frac{L_2^2 + L_3^2 - r^2}{2 L_2 L_3} $$
+                            $$ \theta_3 = \arccos\left( \cos(\theta_{elbow}) \right) - \pi $$
                         </div>
 
                         <div class="gallery-small-wrapper">
